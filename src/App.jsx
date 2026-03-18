@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import CoreIdentity from './components/CoreIdentity'
 import SkillMatrix from './components/SkillMatrix'
 import ProjectHub from './components/ProjectHub'
+import Certificates from './components/Certificates'
 import ExperienceTimeline from './components/ExperienceTimeline'
 import ContactPortal from './components/ContactPortal'
 import Footer from './components/Footer'
@@ -366,6 +367,7 @@ function App() {
             <CoreIdentity />
             <SkillMatrix />
             <ProjectHub />
+            <Certificates />
             <ExperienceTimeline />
             <ContactPortal />
           </main>
