@@ -4,11 +4,11 @@ import { useRef, useState } from 'react'
 const certificates = [
   {
     id: 'CERT-001',
-    title: 'Full Stack Web Development',
-    issuer: 'UDEMY',
-    date: '2024',
+    title: 'Customer Relationship Management',
+    issuer: 'ERPNext - internship',
+    date: '2026',
     credentialId: '7891 4523 8801 2024',
-    skills: ['React', 'Node.js', 'MongoDB', 'Express'],
+    skills: ['python', 'javascript', 'frappe', 'erpnext'],
     accent: '#00f5ff',
     accentAlt: '#0088aa',
     icon: '🌐',
@@ -16,15 +16,16 @@ const certificates = [
   },
   {
     id: 'CERT-002',
-    title: 'JS Algorithms & Data Structures',
-    issuer: 'FREECODECAMP',
-    date: '2024',
+    title: 'Cascading Style Sheets',
+    issuer: 'HackerRank',
+    date: '2025',
     credentialId: '3456 7812 9034 2024',
-    skills: ['JavaScript', 'Algorithms', 'DS', 'ES6+'],
+    skills: ['CSS'],
     accent: '#b946ff',
     accentAlt: '#7a2db8',
     icon: '⚡',
-    network: 'ALGORITHM',
+    network: 'FRONTEND',
+    url: 'https://www.hackerrank.com/certificates/iframe/cd561b525a94'
   },
   {
     id: 'CERT-003',

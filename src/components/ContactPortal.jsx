@@ -201,9 +201,9 @@ export default function ContactPortal() {
           transition={{ delay: 1.1 }}
         >
           {[
-            { label: 'GitHub', icon: '⟨⟩', url: '#' },
-            { label: 'LinkedIn', icon: '◉', url: '#' },
-            { label: 'Email', icon: '✉', url: 'mailto:contact@example.com' },
+            { label: 'GitHub', icon: '⟨⟩', url: 'https://github.com/mohamedaaris' },
+            { label: 'LinkedIn', icon: '◉', url: 'https://www.linkedin.com/in/mohamedaaris/' },
+            { label: 'Email', icon: '✉', url: 'mailto:mohamedaaris019@gmail.com' },
           ].map((social) => (
             <motion.a
               key={social.label}

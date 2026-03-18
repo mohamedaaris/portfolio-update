@@ -4,50 +4,52 @@ import { useRef, useState, useEffect } from 'react'
 const projects = [
   {
     id: 'PRJ-001',
-    title: 'Neural Portfolio',
-    description: 'A futuristic AI-themed portfolio website featuring neural network animations, particle systems, and interactive 3D elements built with cutting-edge technologies.',
-    tech: ['React', 'Three.js', 'Framer Motion', 'Tailwind'],
+    title: 'MiraiSync',
+    description: 'MiraiSync is a collaborative streaming platform that allows multiple users to watch videos simultaneously from different locations. The platform synchronizes video playback in real-time, ensuring everyone enjoys the same content without delays. It features a responsive chat system, user-friendly room creation, and supports a wide range of video sources. Watch Together is designed to deliver seamless group viewing experiences, whether for friends, families, or communities.',
+    tech: ['HTML', 'CSS', 'JavaScript', 'Flask', 'Socket.IO', 'Websocket'],
     status: 'LIVE',
     accent: '#00f5ff',
   },
   {
     id: 'PRJ-002',
-    title: 'E-Commerce Hub',
-    description: 'Full-stack e-commerce solution with dynamic catalog, secure payment integration, real-time inventory management, and responsive design.',
-    tech: ['Next.js', 'MySQL', 'Node.js', 'CSS'],
+    title: 'ResuMatch AI',
+    description: 'ResuMatch AI streamlines the entire process - from resume parsing to job applications - while providing an AI assistant to guide students through their career journey with personalized recommendations and automated communication.',
+    tech: ['HTML', 'CSS', 'JavaScript', 'Flask', 'SBERT', 'TF-IDF', 'GNN model', 'NLP', 'tesseract'],
     status: 'DEPLOYED',
+    url: 'https://aarisx0-resumatch.hf.space/',
     accent: '#b946ff',
   },
   {
     id: 'PRJ-003',
-    title: 'Task Manager',
-    description: 'Collaborative task management application with real-time updates, drag-and-drop, team collaboration, and analytics dashboard.',
-    tech: ['React', 'Python', 'Flask', 'MySQL'],
-    status: 'DEPLOYED',
+    title: 'AgentX - AI Agent Platform',
+    description: 'An advanced AI web interface that combines a chat-first design with reasoning, automation, and tool integration. Create, manage, and deploy AI agents through natural conversation with Llama 3.2 3B. Built with Flask, featuring a modern dark/light theme interface, real-time chat, and modular agent tools system.',
+    tech: ['flask', 'python', 'javascript', 'css', 'html', 'tesseract', 'llama 3.2 3B', 'NLP'],
+    status: 'LIVE',
     accent: '#4d7cff',
   },
   {
     id: 'PRJ-004',
-    title: 'Fitness Tracker',
-    description: 'Cross-platform mobile app for tracking workouts, nutrition, health metrics with AI-powered recommendations and progress analytics.',
-    tech: ['Flutter', 'Firebase', 'Dart', 'REST API'],
-    status: 'BETA',
+    title: 'Flowlink- seamless connection platform',
+    description: 'FlowLink is a cross-platform continuity system built with React, Kotlin, Node.js, WebSocket, and WebRTC that enables seamless content sharing across Android and web devices. It features intelligent file handling with temporary cache on mobile (no storage bloat), smart URL deep-linking to native apps, automatic session discovery with instant notifications, and drag-and-drop transfers for files, text, and URLs. Group-based simultaneous distribution and batch file transfers with auto-organized folders make it a practical alternative to platform-locked solutions like Apple Continuity.',
+    tech: ['react', 'kotlin', 'node.js', 'websocket', 'webrtc'],
+    status: 'DEPLOYED',
     accent: '#00ff88',
   },
   {
     id: 'PRJ-005',
-    title: 'Weather Intel',
-    description: 'Intelligent weather forecasting with interactive maps, severe weather alerts, historical analysis, and location-based recommendations.',
-    tech: ['JavaScript', 'API', 'CSS', 'HTML'],
+    title: 'Autonomous Research Agent System',
+    description: 'A multi-agent research system that autonomously searches and collects the research papers for the topic we give and builds the reference block. It also validates the reference we give whether it is right or wrong and corrects all the typo or mistakes like author/journal name automatically and then gives the correct reference block.',
+    tech: ['javascript', 'API', 'CSS', 'HTML', 'python', 'flask'],
     status: 'LIVE',
     accent: '#ff2d7c',
   },
   {
     id: 'PRJ-006',
-    title: 'Blog CMS',
-    description: 'Content management system with markdown, SEO optimization, media handling, authentication, and customizable themes.',
+    title: 'E-commerce Website',
+    description: 'I designed an e-commerce website for online shopping. The website allows users to browse and purchase products online. The website features a responsive design, a user-friendly interface, and a secure payment gateway. The website is designed to deliver a seamless shopping experience for users.',
     tech: ['Next.js', 'Node.js', 'MySQL', 'JWT'],
     status: 'DEPLOYED',
+    url: 'https://ecommerce-gngm.vercel.app/',
     accent: '#ed8b00',
   },
 ]
@@ -192,6 +194,7 @@ function ProjectDetailPanel({ project, onClose }) {
 
       <motion.button
         whileHover={{ boxShadow: `0 0 20px ${project.accent}40`, background: `${project.accent}15` }}
+        onClick={() => window.open(project.url, "_blank")}
         style={{ width: '100%', padding: '0.7rem', background: `${project.accent}08`, border: `1px solid ${project.accent}60`, borderRadius: '6px', color: project.accent, fontFamily: "'Orbitron', sans-serif", fontSize: '0.7rem', fontWeight: 600, letterSpacing: '3px', cursor: 'pointer', transition: 'all 0.3s' }}
       >
         ◈ ACCESS PROJECT →
@@ -254,7 +257,7 @@ export default function ProjectHub() {
             transition={{ duration: 3, repeat: Infinity }}
             style={{ width: 70, height: 70, borderRadius: '50%', background: 'radial-gradient(circle at 40% 35%, rgba(185,70,255,0.15), rgba(10,10,26,0.98) 70%)', border: '1.5px solid rgba(185,70,255,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           >
-            <span style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.5rem', fontWeight: 700, color: '#b946ff', letterSpacing: '1px', textAlign: 'center', lineHeight: 1.3 }}>PROJECT<br/>HUB</span>
+            <span style={{ fontFamily: "'Orbitron', sans-serif", fontSize: '0.5rem', fontWeight: 700, color: '#b946ff', letterSpacing: '1px', textAlign: 'center', lineHeight: 1.3 }}>PROJECT<br />HUB</span>
           </motion.div>
           <motion.div animate={{ rotate: 360 }} transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
             style={{ position: 'absolute', inset: -10, borderRadius: '50%', border: '1px solid rgba(185,70,255,0.2)', borderTopColor: 'transparent' }}
