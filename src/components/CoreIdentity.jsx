@@ -1,5 +1,7 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
+import aarisImg from '../assets/aaris.jpeg'
+
 
 function TypewriterText({ text, delay = 0, speed = 40 }) {
   const [displayed, setDisplayed] = useState('')
@@ -111,28 +113,20 @@ export default function CoreIdentity() {
             transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
           />
 
-          {/* Initials */}
-          <motion.span
+          {/* User Photo */}
+          <img
+            src={aarisImg}
+            alt="P Mohamed Aaris"
             style={{
-              fontFamily: "'Orbitron', sans-serif",
-              fontSize: '2.5rem',
-              fontWeight: '800',
-              background: 'linear-gradient(135deg, #00f5ff, #b946ff)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              borderRadius: '50%',
+              position: 'relative',
+              zIndex: 10,
+              boxShadow: '0 0 20px rgba(0, 245, 255, 0.4)',
             }}
-            animate={{
-              textShadow: [
-                '0 0 10px rgba(0,245,255,0.5)',
-                '0 0 30px rgba(0,245,255,0.8), 0 0 60px rgba(185,70,255,0.4)',
-                '0 0 10px rgba(0,245,255,0.5)',
-              ],
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            A
-          </motion.span>
+          />
 
           {/* Pulse waves on hover */}
           {[1, 2, 3].map(i => (
