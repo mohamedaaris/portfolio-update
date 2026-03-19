@@ -3,15 +3,7 @@ import { useRef, useState } from 'react'
 
 const experiences = [
   {
-    date: '2024 — PRESENT',
-    title: 'Full Stack Development',
-    org: 'Self-Directed & Freelance',
-    description: 'Building production-grade web apps using React, Next.js, and full-stack technologies. Developing client projects and open-source contributions.',
-    icon: '⚡',
-    color: '#00f5ff',
-  },
-  {
-    date: '2024 — PRESENT',
+    date: '2026 — PRESENT',
     title: 'B.Tech CSE',
     org: 'Rajalakshmi Engineering College',
     description: 'Pursuing Computer Science with focus on software engineering, data structures, algorithms, and modern web technologies. Graduating 2028.',
@@ -19,21 +11,45 @@ const experiences = [
     color: '#b946ff',
   },
   {
-    date: '2023 — 2024',
-    title: 'Web Dev Certifications',
-    org: 'Online Learning Platforms',
-    description: 'Completed multiple courses in HTML, CSS, JavaScript, React, Python, and databases. Built capstone projects to solidify practical skills.',
+    date: '2026',
+    title: 'ERPNext Internship',
+    org: 'Tekbee Technologies',
+    description: 'Worked on Customer relationship management(CRM) module. Created a lead tracker in ERPNext which makes the work easier for the companies by just drag and dropping you can convert a lead to opportunity, Customer and also direct mail features. Developed an AI chatbot in ERPNext that performs ERP tasks using prompt-based commands.',
+    icon: '⚡',
+    color: '#00f5ff',
+  },
+  {
+    date: '2025 — 2026',
+    title: 'SIH participation',
+    org: 'Smart India Hackathon',
+    description: 'Participated in Smart India Hackathon 2025. Even though we got only till the internal hackathon round, it was a great learning experience. Where we learned how to work in a team and how to build a project from scratch.',
     icon: '📜',
     color: '#4d7cff',
   },
   {
-    date: '2023',
-    title: 'Programming Foundations',
-    org: 'Academic & Self-Study',
-    description: 'Built strong foundations in Java and Python. Developed understanding of OOP, data structures, and algorithm design through projects.',
+    date: '2025',
+    title: 'ADMA-ICDM conference',
+    org: 'ADMA Association',
+    description: 'I presented my research paper entitled “Transmission in Cyclic Bipartite Graphs”, which investigates fundamental aspects of graph theory and their applications in the analysis of graph structures. The work presented in this paper has been submitted to the Ain Shams Engineering Journal, a highly reputed Q1 journal from Elsevier with an impact factor of 5.9, and the first revision has been successfully completed.',
     icon: '🧱',
     color: '#00ff88',
   },
+  {
+    date: '2025',
+    title: 'ICGTA conference',
+    org: 'Amrita Vishwa Vidyapeetham',
+    description: 'I have participated in the International Conference on Graph Theory and Its Applications (ICGTA-2025). The sessions and discussions gave me useful insights and expanded my understanding of current research trends and open questions in the field.',
+    icon: '🧱',
+    color: '#00ff88',
+  },
+  {
+    date: '2026',
+    title: 'Visit to ISRO - Indian Space Research Organization',
+    org: 'ISRO',
+    description: 'I learned about maintenance and operational protocols of the automatic fuel filling station at launch pads and also learned about the critical launch preparation equipment, propellant handling systems, safety mechanisms, and the functions of launch pads, umbilical towers, and the zeroth room during pre-launch and launch operations. A highlight was the meeting with Mr. Vijayakumar, Scientist E and Deputy Manager, SDSC SHAR who shared practical insights on engineering challenges, system reliability, and the precision required in space missions. We have also discussed ISRO Open Projects with the Technical Team, gaining valuable perspectives on current research and innovation.',
+    icon: '🚀',
+    color: '#00ff88',
+  }
 ]
 
 export default function ExperienceTimeline() {

@@ -5,10 +5,13 @@ const projects = [
   {
     id: 'PRJ-001',
     title: 'MiraiSync',
-    description: 'MiraiSync is a collaborative streaming platform that allows multiple users to watch videos simultaneously from different locations. The platform synchronizes video playback in real-time, ensuring everyone enjoys the same content without delays. It features a responsive chat system, user-friendly room creation, and supports a wide range of video sources. Watch Together is designed to deliver seamless group viewing experiences, whether for friends, families, or communities.',
+    description: 'MiraiSync is a collaborative streaming platform that allows multiple users to watch videos simultaneously from different locations. The platform synchronizes video playback in real-time, ensuring everyone enjoys the same content without delays. It features a responsive chat system, user-friendly room creation, and supports a wide range of video sources.',
     tech: ['HTML', 'CSS', 'JavaScript', 'Flask', 'Socket.IO', 'Websocket'],
     status: 'LIVE',
     accent: '#00f5ff',
+    // Add your own images/videos here. Supports: image URLs, local paths, or video URLs
+    // Example: media: [{ type: 'image', src: '/screenshots/miraisync1.png', caption: 'Room View' }]
+    media: [],
   },
   {
     id: 'PRJ-002',
@@ -18,6 +21,7 @@ const projects = [
     status: 'DEPLOYED',
     url: 'https://aarisx0-resumatch.hf.space/',
     accent: '#b946ff',
+    media: [],
   },
   {
     id: 'PRJ-003',
@@ -26,14 +30,16 @@ const projects = [
     tech: ['flask', 'python', 'javascript', 'css', 'html', 'tesseract', 'llama 3.2 3B', 'NLP'],
     status: 'LIVE',
     accent: '#4d7cff',
+    media: [],
   },
   {
     id: 'PRJ-004',
     title: 'Flowlink- seamless connection platform',
-    description: 'FlowLink is a cross-platform continuity system built with React, Kotlin, Node.js, WebSocket, and WebRTC that enables seamless content sharing across Android and web devices. It features intelligent file handling with temporary cache on mobile (no storage bloat), smart URL deep-linking to native apps, automatic session discovery with instant notifications, and drag-and-drop transfers for files, text, and URLs. Group-based simultaneous distribution and batch file transfers with auto-organized folders make it a practical alternative to platform-locked solutions like Apple Continuity.',
+    description: 'FlowLink is a cross-platform continuity system built with React, Kotlin, Node.js, WebSocket, and WebRTC that enables seamless content sharing across Android and web devices. It features intelligent file handling with temporary cache on mobile (no storage bloat), smart URL deep-linking to native apps, automatic session discovery with instant notifications, and drag-and-drop transfers for files, text, and URLs.',
     tech: ['react', 'kotlin', 'node.js', 'websocket', 'webrtc'],
     status: 'DEPLOYED',
     accent: '#00ff88',
+    media: [],
   },
   {
     id: 'PRJ-005',
@@ -42,6 +48,7 @@ const projects = [
     tech: ['javascript', 'API', 'CSS', 'HTML', 'python', 'flask'],
     status: 'LIVE',
     accent: '#ff2d7c',
+    media: [],
   },
   {
     id: 'PRJ-006',
@@ -51,6 +58,7 @@ const projects = [
     status: 'DEPLOYED',
     url: 'https://ecommerce-gngm.vercel.app/',
     accent: '#ed8b00',
+    media: [],
   },
 ]
 
@@ -147,6 +155,129 @@ function ProjectNode({ project, index, isInView, pos, hovered, onHover, onLeave,
   )
 }
 
+/* ── Media Carousel for project detail panel ── */
+function MediaCarousel({ media, accent }) {
+  const [current, setCurrent] = useState(0)
+  if (!media || media.length === 0) return null
+
+  const goNext = (e) => {
+    e.stopPropagation()
+    setCurrent(prev => (prev + 1) % media.length)
+  }
+  const goPrev = (e) => {
+    e.stopPropagation()
+    setCurrent(prev => (prev - 1 + media.length) % media.length)
+  }
+
+  const item = media[current]
+
+  return (
+    <div style={{ marginBottom: '1.25rem' }}>
+      <div style={{
+        fontFamily: "'Share Tech Mono', monospace", fontSize: '0.5rem', color: '#4a5568',
+        letterSpacing: '2px', marginBottom: '0.4rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+      }}>
+        <span>◈ PROJECT MEDIA</span>
+        <span>{current + 1} / {media.length}</span>
+      </div>
+
+      {/* Media display area */}
+      <div style={{
+        position: 'relative', width: '100%', borderRadius: '8px', overflow: 'hidden',
+        border: `1px solid ${accent}30`, background: 'rgba(0,0,0,0.3)',
+      }}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -40 }}
+            transition={{ duration: 0.3 }}
+          >
+            {item.type === 'video' ? (
+              <video
+                src={item.src}
+                controls
+                style={{ width: '100%', display: 'block', maxHeight: 200, objectFit: 'cover', background: '#000' }}
+              />
+            ) : (
+              <img
+                src={item.src}
+                alt={item.caption || 'Project screenshot'}
+                style={{ width: '100%', display: 'block', maxHeight: 200, objectFit: 'cover' }}
+              />
+            )}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Navigation arrows */}
+        {media.length > 1 && (
+          <>
+            <motion.button
+              whileHover={{ background: `${accent}30` }}
+              whileTap={{ scale: 0.9 }}
+              onClick={goPrev}
+              style={{
+                position: 'absolute', left: 6, top: '50%', transform: 'translateY(-50%)',
+                width: 28, height: 28, borderRadius: '50%', background: 'rgba(8,8,22,0.8)',
+                border: `1px solid ${accent}40`, color: accent, fontSize: '0.8rem',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                cursor: 'pointer', backdropFilter: 'blur(8px)', transition: 'background 0.2s',
+              }}
+            >
+              ‹
+            </motion.button>
+            <motion.button
+              whileHover={{ background: `${accent}30` }}
+              whileTap={{ scale: 0.9 }}
+              onClick={goNext}
+              style={{
+                position: 'absolute', right: 6, top: '50%', transform: 'translateY(-50%)',
+                width: 28, height: 28, borderRadius: '50%', background: 'rgba(8,8,22,0.8)',
+                border: `1px solid ${accent}40`, color: accent, fontSize: '0.8rem',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                cursor: 'pointer', backdropFilter: 'blur(8px)', transition: 'background 0.2s',
+              }}
+            >
+              ›
+            </motion.button>
+          </>
+        )}
+      </div>
+
+      {/* Caption */}
+      {item.caption && (
+        <div style={{
+          fontFamily: "'Share Tech Mono', monospace", fontSize: '0.55rem', color: '#8892b0',
+          letterSpacing: '1px', marginTop: '0.3rem', textAlign: 'center',
+        }}>
+          {item.caption}
+        </div>
+      )}
+
+      {/* Dot indicators */}
+      {media.length > 1 && (
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '5px', marginTop: '0.4rem' }}>
+          {media.map((_, i) => (
+            <motion.button
+              key={i}
+              onClick={(e) => { e.stopPropagation(); setCurrent(i) }}
+              animate={{
+                background: i === current ? accent : `${accent}30`,
+                scale: i === current ? 1.3 : 1,
+              }}
+              style={{
+                width: 6, height: 6, borderRadius: '50%', border: 'none', cursor: 'pointer',
+                boxShadow: i === current ? `0 0 8px ${accent}` : 'none', padding: 0,
+              }}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 /* ── Expanded project detail panel ── */
 function ProjectDetailPanel({ project, onClose }) {
   return (
@@ -157,8 +288,9 @@ function ProjectDetailPanel({ project, onClose }) {
       style={{
         position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', zIndex: 100,
         background: 'rgba(8,8,22,0.96)', border: `1px solid ${project.accent}50`, borderRadius: '16px',
-        padding: '2rem', width: '90%', maxWidth: 420, backdropFilter: 'blur(20px)',
+        padding: '2rem', width: '90%', maxWidth: 460, backdropFilter: 'blur(20px)',
         boxShadow: `0 0 50px ${project.accent}25, 0 0 100px ${project.accent}10`,
+        maxHeight: '85vh', overflowY: 'auto',
       }}
     >
       <motion.button onClick={onClose} whileHover={{ scale: 1.2, color: '#ff5f56' }}
@@ -184,6 +316,9 @@ function ProjectDetailPanel({ project, onClose }) {
         {project.description}
       </p>
 
+      {/* Media Carousel — shows only if project has media */}
+      <MediaCarousel media={project.media} accent={project.accent} />
+
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.25rem' }}>
         {project.tech.map(t => (
           <span key={t} style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '0.6rem', padding: '0.2rem 0.6rem', border: `1px solid ${project.accent}40`, borderRadius: '2px', color: project.accent, letterSpacing: '1px', background: `${project.accent}08` }}>
@@ -192,13 +327,15 @@ function ProjectDetailPanel({ project, onClose }) {
         ))}
       </div>
 
-      <motion.button
-        whileHover={{ boxShadow: `0 0 20px ${project.accent}40`, background: `${project.accent}15` }}
-        onClick={() => window.open(project.url, "_blank")}
-        style={{ width: '100%', padding: '0.7rem', background: `${project.accent}08`, border: `1px solid ${project.accent}60`, borderRadius: '6px', color: project.accent, fontFamily: "'Orbitron', sans-serif", fontSize: '0.7rem', fontWeight: 600, letterSpacing: '3px', cursor: 'pointer', transition: 'all 0.3s' }}
-      >
-        ◈ ACCESS PROJECT →
-      </motion.button>
+      {project.url && (
+        <motion.button
+          whileHover={{ boxShadow: `0 0 20px ${project.accent}40`, background: `${project.accent}15` }}
+          onClick={() => window.open(project.url, "_blank")}
+          style={{ width: '100%', padding: '0.7rem', background: `${project.accent}08`, border: `1px solid ${project.accent}60`, borderRadius: '6px', color: project.accent, fontFamily: "'Orbitron', sans-serif", fontSize: '0.7rem', fontWeight: 600, letterSpacing: '3px', cursor: 'pointer', transition: 'all 0.3s' }}
+        >
+          ◈ ACCESS PROJECT →
+        </motion.button>
+      )}
     </motion.div>
   )
 }

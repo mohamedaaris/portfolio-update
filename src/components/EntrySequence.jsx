@@ -73,25 +73,35 @@ export default function EntrySequence({ onComplete }) {
   const [ringPulse, setRingPulse] = useState(false)
 
   useEffect(() => {
-    // Animate core appearing
-    setTimeout(() => setCoreScale(1), 200)
-    setTimeout(() => setRingPulse(true), 600)
+    const timeouts = []
 
-    // Show boot lines sequentially
+    // Animate core appearing
+    timeouts.push(setTimeout(() => setCoreScale(1), 200))
+    timeouts.push(setTimeout(() => setRingPulse(true), 600))
+
+    // Show boot lines sequentially — use functional setter to avoid duplicates
     bootSequence.forEach((line) => {
-      setTimeout(() => {
-        setVisibleLines(prev => [...prev, line.text])
-      }, line.delay)
+      timeouts.push(setTimeout(() => {
+        setVisibleLines(prev => {
+          // Prevent duplicates from StrictMode double-mount
+          if (prev.includes(line.text)) return prev
+          return [...prev, line.text]
+        })
+      }, line.delay))
     })
 
     // Show identity after boot
-    setTimeout(() => setShowIdentity(true), 5000)
+    timeouts.push(setTimeout(() => setShowIdentity(true), 5000))
 
     // Start zoom transition
-    setTimeout(() => setPhase('zoom'), 6500)
+    timeouts.push(setTimeout(() => setPhase('zoom'), 6500))
 
     // Complete entry
-    setTimeout(() => onComplete(), 7300)
+    timeouts.push(setTimeout(() => onComplete(), 7300))
+
+    return () => {
+      timeouts.forEach(t => clearTimeout(t))
+    }
   }, [onComplete])
 
   return (

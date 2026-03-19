@@ -7,19 +7,20 @@ const certificates = [
     title: 'Customer Relationship Management',
     issuer: 'ERPNext - internship',
     date: '2026',
-    credentialId: '7891 4523 8801 2024',
+    credentialId: '3456 xxxx xxxx 2026',
     skills: ['python', 'javascript', 'frappe', 'erpnext'],
     accent: '#00f5ff',
     accentAlt: '#0088aa',
     icon: '🌐',
     network: 'FULLSTACK',
+    url: 'https://drive.google.com/file/d/1XA2gb8O88K4r7mNBZSg6Yt1FiS2ROWEc/view?usp=sharing'
   },
   {
     id: 'CERT-002',
     title: 'Cascading Style Sheets',
     issuer: 'HackerRank',
     date: '2025',
-    credentialId: '3456 7812 9034 2024',
+    credentialId: '3456 xxxx xxxx 2025',
     skills: ['CSS'],
     accent: '#b946ff',
     accentAlt: '#7a2db8',
@@ -29,51 +30,55 @@ const certificates = [
   },
   {
     id: 'CERT-003',
-    title: 'Responsive Web Design',
-    issuer: 'FREECODECAMP',
-    date: '2023',
-    credentialId: '6782 1045 3398 2023',
-    skills: ['HTML5', 'CSS3', 'Flexbox', 'Grid'],
+    title: 'ADMA Conference',
+    issuer: 'ADMA',
+    date: '2025',
+    credentialId: '3456 xxxx xxxx 2025',
+    skills: ['Algorithm', 'graphs'],
     accent: '#4d7cff',
     accentAlt: '#2a4fcc',
     icon: '📐',
-    network: 'FRONTEND',
+    network: 'Graph theory',
+    url: 'https://drive.google.com/file/d/1Y4QRqGpvQhGpAp7u5tsr1kZBNEuqluDh/view?usp=sharing'
   },
   {
     id: 'CERT-004',
-    title: 'Python for Data Science',
-    issuer: 'COURSERA',
-    date: '2024',
-    credentialId: '1245 6789 0123 2024',
+    title: 'Python Foundational Course',
+    issuer: 'Infosys Springboard',
+    date: '2025',
+    credentialId: '3456 xxxx xxxx 2025',
     skills: ['Python', 'Pandas', 'NumPy', 'Analysis'],
     accent: '#00ff88',
     accentAlt: '#009955',
     icon: '🐍',
-    network: 'DATASCIENCE',
+    network: 'Python',
+    url: 'https://drive.google.com/file/d/1QYLzyIflMP2Bt1QRk9H2bH5IwjsWfJIB/view?usp=sharing'
   },
   {
     id: 'CERT-005',
-    title: 'React - The Complete Guide',
-    issuer: 'UDEMY',
-    date: '2024',
-    credentialId: '5543 2211 8877 2024',
+    title: 'Data Science Foundation',
+    issuer: 'LinkedIn',
+    date: '2025',
+    credentialId: '3456 xxxx xxxx 2025',
     skills: ['React', 'Redux', 'Hooks', 'Next.js'],
     accent: '#61dafb',
     accentAlt: '#2196c9',
     icon: '⚛',
     network: 'REACT',
+    url: 'https://drive.google.com/file/d/1chiPECEk06fEM23nMVGrfOTw9SNCT5Ea/view?usp=sharing'
   },
   {
     id: 'CERT-006',
-    title: 'Database Management MySQL',
-    issuer: 'COURSERA',
-    date: '2023',
-    credentialId: '9087 6543 2109 2023',
-    skills: ['MySQL', 'SQL', 'Schema', 'Queries'],
+    title: 'Python Flask Course (Basic)',
+    issuer: 'LinkedIn',
+    date: '2025',
+    credentialId: '3456 xxxx xxxx 2025',
+    skills: ['Python', 'Flask', 'Socket.IO'],
     accent: '#ed8b00',
     accentAlt: '#b86a00',
     icon: '⛁',
     network: 'DATABASE',
+    url: 'https://drive.google.com/file/d/1AE_SiBG6i5AOxzT0B8g2E4ddo0iXk51K/view?usp=sharing'
   },
 ]
 
@@ -490,6 +495,36 @@ function CryptoCard({ cert, index, isInView }) {
                 </span>
               ))}
             </div>
+
+            {/* View Certificate Button */}
+            <motion.button
+              whileHover={cert.url ? { scale: 1.03, boxShadow: `0 0 20px ${cert.accent}40` } : {}}
+              whileTap={cert.url ? { scale: 0.97 } : {}}
+              onClick={(e) => {
+                e.stopPropagation()
+                if (cert.url) window.open(cert.url, '_blank')
+              }}
+              style={{
+                width: '100%',
+                padding: '0.5rem',
+                background: cert.url ? `${cert.accent}10` : 'rgba(255,255,255,0.02)',
+                border: `1px solid ${cert.url ? cert.accent + '50' : 'rgba(255,255,255,0.08)'}`,
+                borderRadius: '4px',
+                color: cert.url ? cert.accent : '#4a5568',
+                fontFamily: "'Orbitron', sans-serif",
+                fontSize: '0.5rem',
+                fontWeight: 600,
+                letterSpacing: '3px',
+                cursor: cert.url ? 'pointer' : 'default',
+                transition: 'all 0.3s',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px',
+              }}
+            >
+              {cert.url ? '◈ VIEW CERTIFICATE →' : '◈ LINK PENDING'}
+            </motion.button>
           </div>
 
           {/* Bottom info */}

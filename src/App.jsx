@@ -73,7 +73,7 @@ function CustomCursor() {
 
   return (
     <>
-      {/* Trail dots */}
+      {/* Trail dots — larger and more distinct */}
       {trailPos.current.map((_, i) => (
         <div
           key={`trail-${i}`}
@@ -82,65 +82,67 @@ function CustomCursor() {
             position: 'fixed',
             top: 0,
             left: 0,
-            width: `${6 - i}px`,
-            height: `${6 - i}px`,
-            marginLeft: `${-(6 - i) / 2}px`,
-            marginTop: `${-(6 - i) / 2}px`,
+            width: `${10 - i * 1.5}px`,
+            height: `${10 - i * 1.5}px`,
+            marginLeft: `${-(10 - i * 1.5) / 2}px`,
+            marginTop: `${-(10 - i * 1.5) / 2}px`,
             borderRadius: '50%',
             background: i % 2 === 0 ? '#00f5ff' : '#b946ff',
-            opacity: 0.5 - i * 0.08,
+            opacity: 0.6 - i * 0.1,
             pointerEvents: 'none',
             zIndex: 9998,
             willChange: 'transform',
-            boxShadow: `0 0 ${8 - i}px ${i % 2 === 0 ? '#00f5ff' : '#b946ff'}`,
+            boxShadow: `0 0 ${12 - i * 2}px ${i % 2 === 0 ? '#00f5ff' : '#b946ff'}, 0 0 ${20 - i * 3}px ${i % 2 === 0 ? '#00f5ff50' : '#b946ff50'}`,
           }}
         />
       ))}
 
-      {/* Main cursor dot */}
+      {/* Main cursor — ring + bright core, clearly distinct */}
       <div
         ref={cursorRef}
         style={{
           position: 'fixed',
           top: 0,
           left: 0,
-          width: clicking ? '6px' : hovering ? '14px' : '8px',
-          height: clicking ? '6px' : hovering ? '14px' : '8px',
-          marginLeft: clicking ? '-3px' : hovering ? '-7px' : '-4px',
-          marginTop: clicking ? '-3px' : hovering ? '-7px' : '-4px',
+          width: clicking ? '8px' : hovering ? '22px' : '12px',
+          height: clicking ? '8px' : hovering ? '22px' : '12px',
+          marginLeft: clicking ? '-4px' : hovering ? '-11px' : '-6px',
+          marginTop: clicking ? '-4px' : hovering ? '-11px' : '-6px',
           borderRadius: '50%',
-          background: hovering ? 'transparent' : '#00f5ff',
-          border: hovering ? '2px solid #00f5ff' : 'none',
+          background: hovering
+            ? 'transparent'
+            : 'radial-gradient(circle, #ffffff 0%, #00f5ff 50%, transparent 70%)',
+          border: hovering ? '2px solid #00f5ff' : '1.5px solid rgba(0,245,255,0.6)',
           pointerEvents: 'none',
           zIndex: 10000,
           willChange: 'transform',
           transition: 'width 0.2s, height 0.2s, margin 0.2s, background 0.2s, border 0.2s',
           boxShadow: clicking
-            ? '0 0 20px #00f5ff, 0 0 40px #b946ff'
+            ? '0 0 25px #00f5ff, 0 0 50px #b946ff, 0 0 8px #fff'
             : hovering
-            ? '0 0 15px #00f5ff50, 0 0 30px #b946ff30'
-            : '0 0 10px #00f5ff80',
-          mixBlendMode: 'screen',
+            ? '0 0 20px #00f5ff80, 0 0 40px #b946ff40, 0 0 6px #fff'
+            : '0 0 15px #00f5ff, 0 0 30px #00f5ff60, 0 0 5px #fff',
         }}
       />
 
-      {/* Large glow that follows mouse */}
+      {/* Outer glow aura — larger */}
       <div
         ref={glowRef}
         style={{
           position: 'fixed',
           top: 0,
           left: 0,
-          width: hovering ? '60px' : '40px',
-          height: hovering ? '60px' : '40px',
-          marginLeft: hovering ? '-30px' : '-20px',
-          marginTop: hovering ? '-30px' : '-20px',
+          width: hovering ? '80px' : '55px',
+          height: hovering ? '80px' : '55px',
+          marginLeft: hovering ? '-40px' : '-27.5px',
+          marginTop: hovering ? '-40px' : '-27.5px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0,245,255,0.12) 0%, rgba(185,70,255,0.05) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0,245,255,0.1) 0%, rgba(185,70,255,0.04) 40%, transparent 70%)',
           pointerEvents: 'none',
           zIndex: 9997,
           willChange: 'transform',
           transition: 'width 0.3s, height 0.3s, margin 0.3s',
+          border: '1px solid rgba(0,245,255,0.06)',
         }}
       />
     </>

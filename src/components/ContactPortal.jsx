@@ -1,27 +1,61 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 
+// ═══════════════════════════════════════════════════════════════
+// HOW TO SET UP REAL EMAIL DELIVERY:
+// 1. Go to https://web3forms.com/
+// 2. Enter YOUR email address (mohamedaaris019@gmail.com)
+// 3. You'll receive an Access Key via email
+// 4. Replace the placeholder below with your real key
+// ═══════════════════════════════════════════════════════════════
+const WEB3FORMS_KEY = 'ae1493e1-92ed-4079-9832-12e41c47791a'  // ← PASTE YOUR KEY HERE
+
 export default function ContactPortal() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [isTransmitting, setIsTransmitting] = useState(false)
-  const [transmitted, setTransmitted] = useState(false)
+  const [status, setStatus] = useState(null) // 'success' | 'error' | null
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setIsTransmitting(true)
-    // Simulate transmission
-    setTimeout(() => {
+    setStatus(null)
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `🧠 Neural Transmission from ${formData.name}`,
+          from_name: 'Portfolio Neural Link',
+        }),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch (err) {
+      console.error('Transmission failed:', err)
+      setStatus('error')
+    } finally {
       setIsTransmitting(false)
-      setTransmitted(true)
-      setTimeout(() => setTransmitted(false), 3000)
-      setFormData({ name: '', email: '', message: '' })
-    }, 2000)
+      // Auto-clear status after 5 seconds
+      setTimeout(() => setStatus(null), 5000)
+    }
   }
 
   return (
@@ -149,8 +183,8 @@ export default function ContactPortal() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.9, duration: 0.4 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={!isTransmitting ? { scale: 1.02 } : {}}
+                whileTap={!isTransmitting ? { scale: 0.98 } : {}}
               >
                 {isTransmitting ? (
                   <motion.span
@@ -159,8 +193,10 @@ export default function ContactPortal() {
                   >
                     ◈ TRANSMITTING...
                   </motion.span>
-                ) : transmitted ? (
+                ) : status === 'success' ? (
                   '✓ TRANSMISSION COMPLETE'
+                ) : status === 'error' ? (
+                  '✕ TRANSMISSION FAILED — RETRY'
                 ) : (
                   '◈ TRANSMIT MESSAGE'
                 )}
@@ -168,7 +204,7 @@ export default function ContactPortal() {
             </form>
 
             {/* Transmission Status */}
-            {transmitted && (
+            {status === 'success' && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -181,7 +217,24 @@ export default function ContactPortal() {
                   letterSpacing: '1px',
                 }}
               >
-                {'>'} MESSAGE RECEIVED. NEURAL LINK ESTABLISHED.
+                {'>'} MESSAGE DELIVERED TO NEURAL LINK. RESPONSE INCOMING.
+              </motion.div>
+            )}
+
+            {status === 'error' && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                style={{
+                  marginTop: '1rem',
+                  fontFamily: "'Share Tech Mono', monospace",
+                  fontSize: '0.75rem',
+                  color: '#ff5f56',
+                  textAlign: 'center',
+                  letterSpacing: '1px',
+                }}
+              >
+                {'>'} TRANSMISSION ERROR. CHECK CONNECTION AND RETRY.
               </motion.div>
             )}
           </div>
@@ -208,6 +261,8 @@ export default function ContactPortal() {
             <motion.a
               key={social.label}
               href={social.url}
+              target={social.url.startsWith('mailto') ? undefined : '_blank'}
+              rel="noopener noreferrer"
               style={{
                 display: 'flex',
                 alignItems: 'center',
