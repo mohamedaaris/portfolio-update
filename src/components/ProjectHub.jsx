@@ -1,5 +1,6 @@
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 
 const projects = [
   {
@@ -21,7 +22,7 @@ const projects = [
     status: 'DEPLOYED',
     url: 'https://aarisx0-resumatch.hf.space/',
     accent: '#b946ff',
-    media: [],
+    media: [{ type: 'image', src: '/assets/resumatch1.jpeg', caption: 'Resumatch' }, { type: 'image', src: '/assets/resumatch2.jpeg', caption: 'Resumatch' }, { type: 'image', src: '/assets/resumatch3.jpeg', caption: 'Resumatch' }, { type: 'image', src: '/assets/resumatch4.jpeg', caption: 'Resumatch' }, { type: 'image', src: '/assets/resumatch5.jpeg', caption: 'Resumatch' }],
   },
   {
     id: 'PRJ-003',
@@ -39,7 +40,7 @@ const projects = [
     tech: ['react', 'kotlin', 'node.js', 'websocket', 'webrtc'],
     status: 'DEPLOYED',
     accent: '#00ff88',
-    media: [],
+    media: [{ type: 'image', src: '/assets/flowlink1.jpeg', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink2.jpeg', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink3.jpeg', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink4.jpeg', caption: 'Flowlink' }]
   },
   {
     id: 'PRJ-005',
@@ -48,7 +49,7 @@ const projects = [
     tech: ['javascript', 'API', 'CSS', 'HTML', 'python', 'flask'],
     status: 'LIVE',
     accent: '#ff2d7c',
-    media: [],
+    media: [{ type: 'image', src: '/assets/research1.jpeg', caption: 'Research' }, { type: 'image', src: '/assets/research2.jpeg', caption: 'Research' }, { type: 'image', src: '/assets/research3.jpeg', caption: 'Research' }, { type: 'image', src: '/assets/research4.jpeg', caption: 'Research' }, { type: 'image', src: '/assets/research5.jpeg', caption: 'Research' }, { type: 'image', src: '/assets/research6.jpeg', caption: 'Research' }],
   },
   {
     id: 'PRJ-006',
@@ -58,7 +59,7 @@ const projects = [
     status: 'DEPLOYED',
     url: 'https://ecommerce-gngm.vercel.app/',
     accent: '#ed8b00',
-    media: [],
+    media: [{ type: 'image', src: '/assets/ecommerce.jpg', caption: 'ecommerce' }],
   },
 ]
 
@@ -158,18 +159,40 @@ function ProjectNode({ project, index, isInView, pos, hovered, onHover, onLeave,
 /* ── Media Carousel for project detail panel ── */
 function MediaCarousel({ media, accent }) {
   const [current, setCurrent] = useState(0)
-  if (!media || media.length === 0) return null
+  const [expanded, setExpanded] = useState(false)
 
   const goNext = (e) => {
-    e.stopPropagation()
-    setCurrent(prev => (prev + 1) % media.length)
+    if (e) e.stopPropagation()
+    setCurrent(prev => {
+      const currentValid = prev < media.length ? prev : 0;
+      return (currentValid + 1) % media.length;
+    })
   }
   const goPrev = (e) => {
-    e.stopPropagation()
-    setCurrent(prev => (prev - 1 + media.length) % media.length)
+    if (e) e.stopPropagation()
+    setCurrent(prev => {
+      const currentValid = prev < media.length ? prev : 0;
+      return (currentValid - 1 + media.length) % media.length;
+    })
   }
 
-  const item = media[current]
+  // Keyboard navigation for fullscreen mode
+  useEffect(() => {
+    if (!expanded) return
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight') goNext()
+      if (e.key === 'ArrowLeft') goPrev()
+      if (e.key === 'Escape') setExpanded(false)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [expanded, media])
+
+  if (!media || media.length === 0) return null
+
+  // Ensure current index is valid for the selected project's media array length
+  const validCurrent = current < media.length ? current : 0;
+  const item = media[validCurrent]
 
   return (
     <div style={{ marginBottom: '1.25rem' }}>
@@ -204,11 +227,97 @@ function MediaCarousel({ media, accent }) {
               <img
                 src={item.src}
                 alt={item.caption || 'Project screenshot'}
-                style={{ width: '100%', display: 'block', maxHeight: 200, objectFit: 'cover' }}
+                onClick={(e) => { e.stopPropagation(); setExpanded(true) }}
+                style={{ width: '100%', display: 'block', maxHeight: 200, objectFit: 'cover', cursor: 'zoom-in' }}
               />
             )}
           </motion.div>
         </AnimatePresence>
+
+        {/* Fullscreen expanded view overlay */}
+        {createPortal(
+          <AnimatePresence>
+            {expanded && item.type !== 'video' && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={(e) => { e.stopPropagation(); setExpanded(false) }}
+                style={{
+                  position: 'fixed', inset: 0, zIndex: 9900, background: 'rgba(5,5,15,0.95)',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                  backdropFilter: 'blur(10px)', padding: '2rem', cursor: 'zoom-out'
+                }}
+              >
+                <motion.img
+                  initial={{ scale: 0.8 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0.8 }}
+                  transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+                  src={item.src}
+                  alt={item.caption || 'Expanded viewing'}
+                  style={{ maxWidth: '95vw', maxHeight: '85vh', objectFit: 'contain', borderRadius: '8px', boxShadow: `0 0 50px ${accent}40`, border: `1px solid ${accent}50` }}
+                  onClick={(e) => e.stopPropagation()} // prevent closing when clicking image itself
+                />
+
+                {item.caption && (
+                  <div style={{
+                    position: 'absolute', bottom: 40, fontFamily: "'Share Tech Mono', monospace",
+                    fontSize: '0.8rem', color: accent, letterSpacing: '2px', background: 'rgba(0,0,0,0.6)',
+                    padding: '0.5rem 1rem', borderRadius: '4px', border: `1px solid ${accent}30`
+                  }}>
+                    {item.caption}
+                  </div>
+                )}
+
+                {/* Fullscreen Navigation Buttons */}
+                {media.length > 1 && (
+                  <>
+                    <motion.button
+                      whileHover={{ scale: 1.1, background: 'rgba(0,0,0,0.8)' }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={(e) => { e.stopPropagation(); goPrev() }}
+                      style={{
+                        position: 'absolute', left: '4vw', top: '50%', transform: 'translateY(-50%)',
+                        width: 50, height: 50, borderRadius: '50%', background: 'rgba(8,8,22,0.5)',
+                        border: `1px solid ${accent}40`, color: accent, fontSize: '1.5rem',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        cursor: 'pointer', backdropFilter: 'blur(8px)', transition: 'background 0.2s'
+                      }}
+                    >
+                      ‹
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.1, background: 'rgba(0,0,0,0.8)' }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={(e) => { e.stopPropagation(); goNext() }}
+                      style={{
+                        position: 'absolute', right: '4vw', top: '50%', transform: 'translateY(-50%)',
+                        width: 50, height: 50, borderRadius: '50%', background: 'rgba(8,8,22,0.5)',
+                        border: `1px solid ${accent}40`, color: accent, fontSize: '1.5rem',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        cursor: 'pointer', backdropFilter: 'blur(8px)', transition: 'background 0.2s'
+                      }}
+                    >
+                      ›
+                    </motion.button>
+                  </>
+                )}
+
+                <button
+                  onClick={(e) => { e.stopPropagation(); setExpanded(false) }}
+                  style={{
+                    position: 'absolute', top: 30, right: 40, background: 'none', border: 'none',
+                    color: '#fff', fontSize: '2rem', cursor: 'pointer', fontFamily: "'Share Tech Mono', monospace"
+                  }}
+                >
+                  ✕
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
 
         {/* Navigation arrows */}
         {media.length > 1 && (
