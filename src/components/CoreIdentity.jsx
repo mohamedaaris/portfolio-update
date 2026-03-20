@@ -1,6 +1,5 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
-import aarisImg from '../assets/aaris.jpeg'
 
 
 function TypewriterText({ text, delay = 0, speed = 40 }) {
@@ -115,7 +114,7 @@ export default function CoreIdentity() {
 
           {/* User Photo */}
           <img
-            src={aarisImg}
+            src="/assets/aaris.jpeg"
             alt="P Mohamed Aaris"
             style={{
               width: '100%',

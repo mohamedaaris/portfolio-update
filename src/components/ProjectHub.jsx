@@ -11,7 +11,7 @@ const projects = [
     accent: '#00f5ff',
     // Add your own images/videos here. Supports: image URLs, local paths, or video URLs
     // Example: media: [{ type: 'image', src: '/screenshots/miraisync1.png', caption: 'Room View' }]
-    media: [],
+    media: [{ type: 'image', src: '/assets/miraisync1.jpg ', caption: 'Chatbot' }, { type: 'image', src: '/assets/miraisync2.jpg', caption: 'Chatbot' }, { type: 'image', src: '/assets/miraisync3.jpg', caption: 'Chatbot' }, { type: 'image', src: '/assets/miraisync4.jpg', caption: 'Chatbot' }, { type: 'image', src: '/assets/miraisync5.jpg', caption: 'Chatbot' }]
   },
   {
     id: 'PRJ-002',
@@ -30,7 +30,7 @@ const projects = [
     tech: ['flask', 'python', 'javascript', 'css', 'html', 'tesseract', 'llama 3.2 3B', 'NLP'],
     status: 'LIVE',
     accent: '#4d7cff',
-    media: [],
+    media: [{ type: 'image', src: '/assets/chatbot1.jpeg', caption: 'Chatbot' }, { type: 'image', src: '/assets/chatbot2.jpeg', caption: 'Chatbot' }, { type: 'image', src: '/assets/chatbot3.jpeg', caption: 'Chatbot' }, { type: 'image', src: '/assets/chatbot4.jpeg', caption: 'Chatbot' }, { type: 'image', src: '/assets/chatbot5.jpeg', caption: 'Chatbot' }],
   },
   {
     id: 'PRJ-004',
