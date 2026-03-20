@@ -256,8 +256,15 @@ function MediaCarousel({ media, accent }) {
                   transition={{ type: 'spring', stiffness: 200, damping: 20 }}
                   src={item.src}
                   alt={item.caption || 'Expanded viewing'}
-                  style={{ maxWidth: '95vw', maxHeight: '85vh', objectFit: 'contain', borderRadius: '8px', boxShadow: `0 0 50px ${accent}40`, border: `1px solid ${accent}50` }}
+                  style={{ maxWidth: '95vw', maxHeight: '85vh', objectFit: 'contain', borderRadius: '8px', boxShadow: `0 0 50px ${accent}40`, border: `1px solid ${accent}50`, touchAction: 'none' }}
                   onClick={(e) => e.stopPropagation()} // prevent closing when clicking image itself
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  onDragEnd={(e, info) => {
+                    if (info.offset.x < -50) goNext();
+                    if (info.offset.x > 50) goPrev();
+                  }}
                 />
 
                 {item.caption && (
