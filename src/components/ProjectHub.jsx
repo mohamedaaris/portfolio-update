@@ -8,7 +8,8 @@ const projects = [
     title: 'MiraiSync',
     description: 'MiraiSync is a collaborative streaming platform that allows multiple users to watch videos simultaneously from different locations. The platform synchronizes video playback in real-time, ensuring everyone enjoys the same content without delays. It features a responsive chat system, user-friendly room creation, and supports a wide range of video sources.',
     tech: ['HTML', 'CSS', 'JavaScript', 'Flask', 'Socket.IO', 'Websocket'],
-    status: 'LIVE',
+    status: 'DEPLOYED',
+    url: 'https://miraisync.com/',
     accent: '#00f5ff',
     // Add your own images/videos here. Supports: image URLs, local paths, or video URLs
     // Example: media: [{ type: 'image', src: '/screenshots/miraisync1.png', caption: 'Room View' }]
