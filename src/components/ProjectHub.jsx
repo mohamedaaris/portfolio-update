@@ -40,7 +40,7 @@ const projects = [
     tech: ['react', 'kotlin', 'node.js', 'websocket', 'webrtc'],
     status: 'DEPLOYED',
     accent: '#00ff88',
-    media: [{ type: 'image', src: '/assets/flowlink1.jpeg', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink2.jpeg', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink3.jpeg', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink4.jpeg', caption: 'Flowlink' }]
+    media: [{ type: 'image', src: '/assets/flowlink1.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink2.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink3.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink4.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink5.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink6.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink7.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink8.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink9.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink10.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink11.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink12.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink13.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink14.png', caption: 'Flowlink' }]
   },
   {
     id: 'PRJ-005',
@@ -49,7 +49,7 @@ const projects = [
     tech: ['javascript', 'API', 'CSS', 'HTML', 'python', 'flask'],
     status: 'LIVE',
     accent: '#ff2d7c',
-    media: [{ type: 'image', src: '/assets/research1.jpeg', caption: 'Research' }, { type: 'image', src: '/assets/research2.jpeg', caption: 'Research' }, { type: 'image', src: '/assets/research3.jpeg', caption: 'Research' }, { type: 'image', src: '/assets/research4.jpeg', caption: 'Research' }, { type: 'image', src: '/assets/research5.jpeg', caption: 'Research' }, { type: 'image', src: '/assets/research6.jpeg', caption: 'Research' }],
+    media: [{ type: 'image', src: '/assets/research1.png', caption: 'Research' }, { type: 'image', src: '/assets/research2.png', caption: 'Research' }, { type: 'image', src: '/assets/research3.png', caption: 'Research' }, { type: 'image', src: '/assets/research4.png', caption: 'Research' }, { type: 'image', src: '/assets/research5.png', caption: 'Research' }, { type: 'image', src: '/assets/research6.png', caption: 'Research' }, { type: 'image', src: '/assets/research7.png', caption: 'Research' }],
   },
   {
     id: 'PRJ-006',
