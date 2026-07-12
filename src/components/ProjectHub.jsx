@@ -9,9 +9,8 @@ const projects = [
     description: 'MiraiSync is a collaborative streaming platform that allows multiple users to watch videos simultaneously from different locations. The platform synchronizes video playback in real-time, ensuring everyone enjoys the same content without delays. It features a responsive chat system, user-friendly room creation, and supports a wide range of video sources.',
     tech: ['HTML', 'CSS', 'JavaScript', 'Flask', 'Socket.IO', 'Websocket'],
     status: 'LIVE',
+    url: 'https://miraisync.app/',
     accent: '#00f5ff',
-    // Add your own images/videos here. Supports: image URLs, local paths, or video URLs
-    // Example: media: [{ type: 'image', src: '/screenshots/miraisync1.png', caption: 'Room View' }]
     media: [{ type: 'image', src: '/assets/miraisync1.jpg ', caption: 'Chatbot' }, { type: 'image', src: '/assets/miraisync2.jpg', caption: 'Chatbot' }, { type: 'image', src: '/assets/miraisync3.jpg', caption: 'Chatbot' }, { type: 'image', src: '/assets/miraisync4.jpg', caption: 'Chatbot' }, { type: 'image', src: '/assets/miraisync5.jpg', caption: 'Chatbot' }]
   },
   {
@@ -39,6 +38,7 @@ const projects = [
     description: 'FlowLink is a cross-platform continuity system built with React, Kotlin, Node.js, WebSocket, and WebRTC that enables seamless content sharing across Android and web devices. It features intelligent file handling with temporary cache on mobile (no storage bloat), smart URL deep-linking to native apps, automatic session discovery with instant notifications, and drag-and-drop transfers for files, text, and URLs.',
     tech: ['react', 'kotlin', 'node.js', 'websocket', 'webrtc'],
     status: 'DEPLOYED',
+    url: 'https://flowlink-1sta.onrender.com/',
     accent: '#00ff88',
     media: [{ type: 'image', src: '/assets/flowlink1.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink2.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink3.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink4.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink5.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink6.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink7.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink8.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink9.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink10.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink11.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink12.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink13.png', caption: 'Flowlink' }, { type: 'image', src: '/assets/flowlink14.png', caption: 'Flowlink' }]
   },
@@ -48,6 +48,7 @@ const projects = [
     description: 'A multi-agent research system that autonomously searches and collects the research papers for the topic we give and builds the reference block. It also validates the reference we give whether it is right or wrong and corrects all the typo or mistakes like author/journal name automatically and then gives the correct reference block.',
     tech: ['javascript', 'API', 'CSS', 'HTML', 'python', 'flask'],
     status: 'LIVE',
+    url: 'https://research-pnaa.onrender.com/',
     accent: '#ff2d7c',
     media: [{ type: 'image', src: '/assets/research1.png', caption: 'Research' }, { type: 'image', src: '/assets/research2.png', caption: 'Research' }, { type: 'image', src: '/assets/research3.png', caption: 'Research' }, { type: 'image', src: '/assets/research4.png', caption: 'Research' }, { type: 'image', src: '/assets/research5.png', caption: 'Research' }, { type: 'image', src: '/assets/research6.png', caption: 'Research' }, { type: 'image', src: '/assets/research7.png', caption: 'Research' }],
   },

@@ -80,6 +80,71 @@ const certificates = [
     network: 'DATABASE',
     url: 'https://drive.google.com/file/d/1AE_SiBG6i5AOxzT0B8g2E4ddo0iXk51K/view?usp=sharing'
   },
+  {
+    id: 'CERT-007',
+    title: 'Journey to Cloud: Envisioning Your Solution',
+    issuer: 'IBM',
+    date: '2026',
+    credentialId: '3456 xxxx xxxx 2025',
+    skills: ['AI', 'cloud'],
+    accent: '#b946ff',
+    accentAlt: '#7a2db8',
+    icon: '⚡',
+    network: 'cloud',
+    url: 'https://drive.google.com/file/d/1mPTWaURvWT4GVTpYDc66Eq08V8di561O/view?usp=sharing'
+  },
+  {
+    id: 'CERT-008',
+    title: 'Getting Started with Artificial Intelligence',
+    issuer: 'IBM',
+    date: '2026',
+    credentialId: '3456 xxxx xxxx 2025',
+    skills: ['Agentic AI'],
+    accent: '#b946ff',
+    accentAlt: '#7a2db8',
+    icon: '⚡',
+    network: 'server',
+    url: 'https://drive.google.com/file/d/19tr01To1B-RNX69tZ21oK5QH-jxRl5aN/view?usp=sharing'
+  },
+  {
+    id: 'CERT-009',
+    title: 'Getting Started with Cybersecurity',
+    issuer: 'IBM',
+    date: '2026',
+    credentialId: '3456 xxxx xxxx 2025',
+    skills: ['Networks'],
+    accent: '#b946ff',
+    accentAlt: '#7a2db8',
+    icon: '⚡',
+    network: 'Cyber',
+    url: 'https://drive.google.com/file/d/1zfCZiZh7p6ID6jqy89SohAiBTnd_15pr/view?usp=sharing'
+  },
+  {
+    id: 'CERT-0010',
+    title: 'Micro-Certification - Welcome to ServiceNow',
+    issuer: 'ServiceNow',
+    date: '2026',
+    credentialId: '3456 xxxx xxxx 2025',
+    skills: ['Administration'],
+    accent: '#b946ff',
+    accentAlt: '#7a2db8',
+    icon: '⚡',
+    network: 'Server',
+    url: 'https://drive.google.com/file/d/16o-b2WMFQ5tN_xcPCI2os1i-E96qQVc4/view?usp=sharing'
+  },
+  {
+    id: 'CERT-0011',
+    title: 'Virtual Internship programme',
+    issuer: 'ServiceNow',
+    date: '2026',
+    credentialId: '3456 xxxx xxxx 2025',
+    skills: ['Administration', 'Workflow Automation', 'Flow Designer'],
+    accent: '#b946ff',
+    accentAlt: '#7a2db8',
+    icon: '⚡',
+    network: 'Server',
+    url: 'https://drive.google.com/file/d/1r5LMQt85uFY2gbMPzCb42-CiglCo2RG4/view?usp=sharing'
+  },
 ]
 
 /* ── EMV Chip SVG ── */
